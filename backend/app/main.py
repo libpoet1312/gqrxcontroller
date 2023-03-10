@@ -12,6 +12,7 @@ MODULATIONS = ['FM', 'AM', 'NFM', 'WFM_ST', 'WFM_ST_OIRT', 'WFM']
 settings = Settings()
 
 dictConfig(LogConfig().dict())
+LogConfig().dict()['LOG_LEVEL'] = settings.debug_level
 logger = logging.getLogger('gqrx')
 
 app = FastAPI(

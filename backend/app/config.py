@@ -3,14 +3,15 @@ from pydantic import BaseSettings, BaseModel
 
 class Settings(BaseSettings):
     environment: str = "dev"
+    debug_level: str = "DEBUG"
     title: str = "GQRX Controller API"
     description: str = "GQRX Controller API"
     version: str = "0.1.0"
-    telnet_host: str = "127.0.0.1"
-    telnet_port: int = 7356
+    telnet_host: str
+    telnet_port: int
 
     class Config:
-        env_file = ".env"
+        env_file = "../.env"
         env_file_encoding = "utf-8"
 
 
