@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST" action="/">
+        <input type="hidden" name="connect" value="{% if active %}0{% else %}1{% endif %}">
+        <button type="submit"
+                id="connect"
+                class="btn btn-rounded {% if active %} text-success {% else %} text-warning {% endif %}">
+            <i class="fas fa-broadcast-tower fa-10x"></i>
+        </button>
+    </form>
+{% endblock %}

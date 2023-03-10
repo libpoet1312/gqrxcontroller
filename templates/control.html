@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <audio
+                src="http://loclahost:8888"
+                type='audio/webm; codecs="vorbis"'
+                controls
+                autoplay
+                preload="none"
+        ></audio>
+    <div class="row">
+    <div class="col">
+        <button onclick="close_connection()"
+                id="connect"
+                class="btn btn-rounded {% if active %} text-success {% else %} text-warning {% endif %}">
+            <i class="fas fa-broadcast-tower fa-10x"></i>
+        </button>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form action="/control" method="POST">
+                <label for="freq" class="form-label"><h1>Frequency</h1></label>
+                <input class="form-control mb-3" id="freq" value="{{ freq }}" name="freq">
+                <span>{{ freq }}</span>
+                <span>{{ mod }}</span>
+
+
+                <select class="form-select mb-3" name="mod">
+                    {% for m in mods %}
+                        <option value="{{ m }}"
+                                {% if m == mod %}selected="selected"{% endif %}>{{ m }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function close_connection() {
+            const formData  = new FormData();
+            formData.append('connect', '0')
+            fetch('/', {method: 'POST', body: formData})
+                .then(response => {
+                    console.log(response)
+                    if(response.ok) {
+                        window.location.href = '/'
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+    </script>
+{% endblock %}
