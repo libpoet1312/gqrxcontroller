@@ -1,7 +1,7 @@
 .DS_Store
-.env
+app/.env
 .flaskenv
 *.pyc
 *.pyo
 .vscode
-.idea
+../.idea
